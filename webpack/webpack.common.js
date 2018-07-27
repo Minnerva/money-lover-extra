@@ -26,7 +26,23 @@ module.exports = {
     }
   },
   entry: {
-    'assets/app': pathResolve('src/index')
+    app: pathResolve('src/index'),
+    vendor: [
+      'babel-polyfill', 'babel-regenerator-runtime',
+      'lodash', 'moment',
+      'vue', 'vue-router', 'vuex', 'vuetify'
+    ]
+  },
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendor',
+          chunks: 'all'
+        }
+      }
+    }
   },
   output: {
     path: distDir,
@@ -38,7 +54,7 @@ module.exports = {
     }),
     new CopyWebpackPlugin ([
       {
-        from: path.resolve(__dirname, './../src/public'),
+        from: pathResolve('src/public'),
         to: ''
       }
     ]),
