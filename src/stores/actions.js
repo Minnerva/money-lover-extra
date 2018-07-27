@@ -19,5 +19,9 @@ export default {
     })
     console.log(data)
     return data
+  },
+
+  setDataToLocal ({ state }, values) {
+    window.localStorage.setItem(state.MONEY_EXTRA, JSON.stringify(values))
   }
 }

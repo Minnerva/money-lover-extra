@@ -1,3 +1,4 @@
 export default {
-  drawer: false
+  drawer: false,
+  LOCAL_KEY: 'MONEY_EXTRA'
 }
