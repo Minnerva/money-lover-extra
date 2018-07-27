@@ -7,6 +7,17 @@
         span {{ fileName }}
       v-flex(xs12 md6)
         v-btn(color="secondary" block :disabled="!cvs") Get Report
+      v-flex.mt-3(v-if="displayData.length" xs12)
+        v-layout(row wrap)
+          v-flex(xs12 text-xs-center).title Example Data
+          v-flex(xs3 text-xs-center) Category
+          v-flex(xs3 text-xs-center) Amount
+          v-flex(xs6 text-xs-center) Note
+        v-divider
+        v-layout(v-for="data in displayData" :key="data.id" row wrap)
+          v-flex(xs3) {{ data.category }}
+          v-flex(xs3 text-xs-right) {{ data.amount }}
+          v-flex(xs6) {{ data.Note }}
 </template>
 
 <script>
@@ -14,6 +25,7 @@
     data () {
       return {
         cvs: ``,
+        displayData: [],
         fileName: ``
       }
     },
@@ -32,11 +44,13 @@
           reader.onload = () => {
             dispatch(`cvsToData`, reader.result).then(data => {
               this.cvs = data
+              this.displayData = data.splice(0, 10)
             })
           }
         } else {
           this.fileName = ``
           this.cvs = ``
+          this.displayData = []
         }
       }
     }
