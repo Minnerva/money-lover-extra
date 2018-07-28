@@ -1,6 +1,7 @@
 import LayoutDefault from '@layouts/Default'
 
 import ViewIndex from '@views/Index'
+import ViewUpload from '@views/Upload'
 import ViewError404 from '@views/error/404'
 
 export default [
@@ -8,7 +9,8 @@ export default [
     path: '/',
     component: LayoutDefault,
     children: [
-      { path: '', name: 'index', component: ViewIndex }
+      { path: '', name: 'index', component: ViewIndex },
+      { path: 'upload', name: 'upload', component: ViewUpload }
     ]
   },
   { path: '*', component: ViewError404 }

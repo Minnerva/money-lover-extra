@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-list-tile(@click="route(menu.to)")
+  v-list-tile(@click="$router.push(menu.to)")
     v-list-tile-action
       v-icon(:color="color") fa-{{ menu.icon }}
     v-list-tile-content

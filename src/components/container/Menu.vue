@@ -7,7 +7,15 @@
         v-icon fab fa-github
     v-divider
     v-list(dense)
-      item-menu(v-for="menu in menus" :key="menu.label" :menu="menu")
+      template(v-for="menu in menus")
+        template(v-if="!menu.subs")
+          item-menu(:key="menu.label" :menu="menu")
+        template(v-else)
+          v-list-group(:key="menu.label" :prepend-icon="`fa-${menu.icon}`" :value="false")
+            v-list-tile(slot="activator")
+              v-list-tile-title {{ menu.label }}
+            v-list-tile(v-for="sub in menu.subs")
+              v-list-tile-title ABC
 </template>
 
 <script>
@@ -19,9 +27,16 @@
     data () {
       return {
         menus: [
-          { icon: 'home', label: 'Home', name: 'index', to: ''},
-          { icon: 'home', label: 'A', to: ''},
-          { icon: 'home', label: 'B', to: ''}
+          { icon: 'home', label: 'Home', name: 'index', to: '/'},
+          { icon: 'upload', label: 'Upload File', name: 'upload', to: '/upload'},
+          {
+            icon: 'file-invoice-dollar',
+            label: 'Report',
+            to: '',
+            subs: [
+                ''
+              ]
+            }
         ]
       }
     },

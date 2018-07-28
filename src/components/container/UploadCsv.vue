@@ -6,7 +6,7 @@
         v-btn.ml-0(color="primary" @click="browse") Browse
         span {{ fileName }}
       v-flex(xs12 md6)
-        v-btn(color="secondary" block :disabled="!cvs") Get Report
+        v-btn(color="secondary" block :disabled="!displayData.length" @click="getReport") Get Report
       v-flex.mt-3(v-if="displayData.length" xs12)
         v-layout(row wrap)
           v-flex(xs12 text-xs-center).title Example Data
@@ -52,6 +52,9 @@
           this.cvs = ``
           this.displayData = []
         }
+      },
+      getReport () {
+        
       }
     }
   }

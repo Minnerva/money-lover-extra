@@ -1,14 +1,15 @@
 <template lang="pug">
   div
-    container-upload-csv
 </template>
 
 <script>
-  import ContainerUploadCsv from '@components/container/UploadCsv'
-  
   export default {
-    components: {
-      ContainerUploadCsv
+    mounted () {
+      const { getters } = this.$store
+      const data = getters.getDataFromLocal
+      if (data.length <= 0) {
+        this.$router.replace('/upload')
+      }
     }
   }
 </script>

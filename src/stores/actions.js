@@ -17,7 +17,6 @@ export default {
         data.push(d)
       }
     })
-    console.log(data)
     return data
   },
 
