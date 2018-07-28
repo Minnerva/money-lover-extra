@@ -24,7 +24,7 @@
   export default {
     data () {
       return {
-        cvs: ``,
+        data: ``,
         displayData: [],
         fileName: ``
       }
@@ -43,18 +43,19 @@
           reader.readAsText(file)
           reader.onload = () => {
             dispatch(`cvsToData`, reader.result).then(data => {
-              this.cvs = data
+              this.data = data
               this.displayData = data.splice(0, 10)
             })
           }
         } else {
           this.fileName = ``
-          this.cvs = ``
+          this.data = ``
           this.displayData = []
         }
       },
       getReport () {
-        
+        this.$store.dispatch('setDataToLocal', this.data)
+        this.$router.push('/')
       }
     }
   }

@@ -21,6 +21,13 @@ export default {
   },
 
   setDataToLocal ({ state }, values) {
-    window.localStorage.setItem(state.MONEY_EXTRA, JSON.stringify(values))
+    window.localStorage.setItem(state.LOCAL_KEY_DATA, JSON.stringify(values))
+  },
+
+  /*
+    store time stamp so it can uses with timezone easier
+  */
+  setLastUploadToLocal ({ state }, values) {
+    window.localStorage.setItem(state.LOCAL_KEY_UPDATE, JSON.stringify(values))
   }
 }

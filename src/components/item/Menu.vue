@@ -16,7 +16,7 @@
         color: ``
       }
     },
-    $watch: {
+    watch: {
       $route () {
         this.updateColor()
       }
