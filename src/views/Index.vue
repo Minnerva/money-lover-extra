@@ -19,7 +19,7 @@
     },
     mounted () {
       const { getters } = this.$store
-      const data = getters.getDataFromLocal
+      const data = getters.dataFromLocal
       if (data.length <= 0) {
         this.$router.replace('/upload')
       } else {

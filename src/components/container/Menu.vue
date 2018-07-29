@@ -17,11 +17,12 @@
           v-list-group(:key="menu.label" :prepend-icon="`fa-${menu.icon}`" :value="false")
             v-list-tile(slot="activator")
               v-list-tile-title {{ menu.label }}
-            v-list-tile(v-for="sub in menu.subs")
-              v-list-tile-title ABC
+            v-list-tile(v-for="sub in menu.subs" :key="sub.group")
+              v-list-tile-title {{ sub.label }}
 </template>
 
 <script>
+  import _ from 'lodash'
   import moment from 'moment'
   import ItemMenu from '@components/item/Menu'
 
@@ -31,8 +32,6 @@
     },
     computed: {
       lastUpdate () {
-        // const m = moment(this.$store.state.lastUpdate)
-        // return m.format(`DD MMM YYYY HH:mm`)
         return this.$store.state.lastUpdate
       }
     },
@@ -45,10 +44,8 @@
             icon: 'file-invoice-dollar',
             label: 'Report',
             to: '',
-            subs: [
-                ''
-              ]
-            }
+            subs: []
+          }
         ]
       }
     },
@@ -60,6 +57,19 @@
         const m = moment(date)
         return m.format(`DD MMM YYYY HH:mm`)
       }
+    },
+    mounted () {
+      const data = this.$store.getters.dataFromLocal
+      const groups = _.groupBy(data, 'dateGroup')
+      let dateGroups = []
+      _.forIn(groups, (values, key) => {
+        dateGroups.push({
+          group: key,
+          label: moment(key, `YYYY-MM`).format(`YYYY MMMM`),
+          items: values
+        })
+      })
+      this.menus[2].subs = dateGroups
     }
   }
 </script>

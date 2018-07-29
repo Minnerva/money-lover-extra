@@ -16,6 +16,13 @@ export default {
           const key = keys[index]
           if (key === 'amount') {
             d[key] = parseFloat(value)
+          } else if (key === 'date') {
+            d[key] = value
+            d.moment = moment(value, `DD/MM/YYYY`)
+            d.day = d.moment.date()
+            d.month = d.moment.month()
+            d.year = d.moment.year()
+            d.dateGroup = `${d.year}-${d.month}`
           } else {
             d[key] = value
           }

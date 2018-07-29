@@ -17,7 +17,7 @@
     },
     mounted () {
       const { state, getters } = this.$store
-      state.lastUpdate = getters.getLastUploadFromLocal
+      state.lastUpdate = getters.lastUploadFromLocal
     }
   }
 </script>

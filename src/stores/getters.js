@@ -1,11 +1,11 @@
 import _ from 'lodash'
 
 export default {
-  getDataFromLocal (state) {
+  dataFromLocal (state) {
     const data = window.localStorage.getItem(state.LOCAL_KEY_DATA)
     return data ? JSON.parse(data) : []
   },
-  getLastUploadFromLocal (state) {
+  lastUploadFromLocal (state) {
     const data = window.localStorage.getItem(state.LOCAL_KEY_UPDATE)
     return data ? JSON.parse(data) : 0
   },
