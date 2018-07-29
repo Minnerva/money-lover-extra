@@ -57,8 +57,7 @@
         const { state, getters, dispatch } = this.$store
         await dispatch('setDataToLocal', this.data)
         await dispatch('setLastUploadToLocal')
-        state.lastUpdate = getters.getLastUploadFromLocal
-        this.$router.push('/')
+        window.location.href = '/'
       }
     }
   }
