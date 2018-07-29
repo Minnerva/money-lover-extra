@@ -1,4 +1,5 @@
 import _ from 'lodash'
+import moment from 'moment'
 
 export default {
   cvsToData (vuex, text) {
@@ -9,10 +10,15 @@ export default {
       if (row === 0) {
         /* Find Keys Object */
         keys = rawData.map(raw => _.camelCase(raw))
-      } else {
+      } else if (rawData.length === 8) {
         let d = {}
         rawData.forEach((value, index) => {
-          d[keys[index]] = value
+          const key = keys[index]
+          if (key === 'amount') {
+            d[key] = parseFloat(value)
+          } else {
+            d[key] = value
+          }
         })
         data.push(d)
       }
@@ -23,11 +29,7 @@ export default {
   setDataToLocal ({ state }, values) {
     window.localStorage.setItem(state.LOCAL_KEY_DATA, JSON.stringify(values))
   },
-
-  /*
-    store time stamp so it can uses with timezone easier
-  */
-  setLastUploadToLocal ({ state }, values) {
-    window.localStorage.setItem(state.LOCAL_KEY_UPDATE, JSON.stringify(values))
+  setLastUploadToLocal ({ state }) {
+    window.localStorage.setItem(state.LOCAL_KEY_UPDATE, JSON.stringify(moment()))
   }
 }

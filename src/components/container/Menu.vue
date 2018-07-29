@@ -7,6 +7,9 @@
         v-icon fab fa-github
     v-divider
     v-list(dense)
+      v-list-tile
+        v-list-tile-content
+          v-list-tile-title Last Update: {{ displayDate(lastUpdate) }}
       template(v-for="menu in menus")
         template(v-if="!menu.subs")
           item-menu(:key="menu.label" :menu="menu")
@@ -19,10 +22,19 @@
 </template>
 
 <script>
+  import moment from 'moment'
   import ItemMenu from '@components/item/Menu'
+
   export default {
     components: {
       ItemMenu 
+    },
+    computed: {
+      lastUpdate () {
+        // const m = moment(this.$store.state.lastUpdate)
+        // return m.format(`DD MMM YYYY HH:mm`)
+        return this.$store.state.lastUpdate
+      }
     },
     data () {
       return {
@@ -43,6 +55,10 @@
     methods: {
       toMyGitHub () {
         window.open(`https://github.com/Minnerwa/money-lover-extra`, `_blank`)
+      },
+      displayDate (date) {
+        const m = moment(date)
+        return m.format(`DD MMM YYYY HH:mm`)
       }
     }
   }

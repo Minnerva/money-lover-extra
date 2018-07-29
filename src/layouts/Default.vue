@@ -14,6 +14,10 @@
   export default {
     components: {
       ContainerMenu
+    },
+    mounted () {
+      const { state, getters } = this.$store
+      state.lastUpdate = getters.getLastUploadFromLocal
     }
   }
 </script>

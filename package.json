@@ -25,8 +25,11 @@
   "homepage": "https://github.com/Minnerwa/vue-boilerplate#readme",
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.2.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "chart.js": "^2.7.2",
     "lodash": "^4.17.10",
     "moment": "^2.22.2",
+    "numeral": "^2.0.6",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.2",
     "vue": "^2.5.16",

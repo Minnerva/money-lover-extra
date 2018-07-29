@@ -6,9 +6,11 @@ import Vuex from 'vuex'
 import Vuetify from 'vuetify'
 import colors from 'vuetify/es5/util/colors'
 
+import utils from './utils'
 import routes from './routes'
 import stores from '@stores'
 
+Vue.mixin({ methods: utils })
 Vue.use(VueRouter)
 Vue.use(Vuex)
 Vue.use(Vuetify, {

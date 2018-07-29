@@ -29,7 +29,7 @@ module.exports = {
     app: pathResolve('src/index'),
     vendor: [
       'babel-polyfill', 'babel-regenerator-runtime',
-      'lodash', 'moment',
+      'lodash', 'moment', 'chart.js', 'numeral',
       'vue', 'vue-router', 'vuex', 'vuetify'
     ]
   },
@@ -76,7 +76,8 @@ module.exports = {
           options: {
             presets: ['env'],
             plugins: [
-              'transform-runtime'
+              'transform-runtime',
+              'transform-object-rest-spread'
             ]
           }
         }
