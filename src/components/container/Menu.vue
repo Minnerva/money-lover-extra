@@ -17,7 +17,7 @@
           v-list-group(:key="menu.label" :prepend-icon="`fa-${menu.icon}`" :value="false")
             v-list-tile(slot="activator")
               v-list-tile-title {{ menu.label }}
-            v-list-tile(v-for="sub in menu.subs" :key="sub.group")
+            v-list-tile(v-for="sub in menu.subs" :key="sub.group" @click="$router.push(`/group/${sub.group}`)")
               v-list-tile-title {{ sub.label }}
 </template>
 

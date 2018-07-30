@@ -32,14 +32,24 @@
         totalPercent: 0
       }
     },
+    watch: {
+      data () {
+        this.init()
+      }
+    },
+    methods: {
+      init () {
+        const { getters } = this.$store
+        this.totalIncome = getters.filterIncome(this.data) 
+        this.totalExpense = getters.filterExpense(this.data)
+        
+        const percent = ((this.totalIncome + this.totalExpense) / this.totalIncome) * 100
+        this.totalSummary = this.totalIncome + this.totalExpense
+        this.totalPercent = percent.toFixed(2)
+      }
+    },
     mounted () {
-      const { getters } = this.$store
-      this.totalIncome = getters.filterIncome(this.data) 
-      this.totalExpense = getters.filterExpense(this.data)
-      
-      const percent = ((this.totalIncome + this.totalExpense) / this.totalIncome) * 100
-      this.totalSummary = this.totalIncome + this.totalExpense
-      this.totalPercent = percent.toFixed(2)
+      this.init()
     }
   }
 </script>

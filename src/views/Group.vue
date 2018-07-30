@@ -13,19 +13,25 @@
     },
     data () {
       return {
-        accounts: []
+        accounts: {}
+      }
+    },
+    watch: {
+      $route () {
+        this.init()
+      }
+    },
+    methods: {
+      init () {
+        const { getters } = this.$store
+        const { group } = this.$route.params
+        const data = _.filter(getters.dataFromLocal, { dateGroup: group })
+        const accounts = _.groupBy(data, 'account')
+        this.accounts = { All: data, ...accounts}
       }
     },
     mounted () {
-      const { getters } = this.$store
-      const data = getters.dataFromLocal
-      if (data.length <= 0) {
-        this.$router.replace('/upload')
-      } else {
-        const accounts = _.groupBy(data, 'account')
-        this.accounts = { All: data, ...accounts}
-        console.log(this.accounts)
-      }
+      this.init()
     }
   }
 </script>
